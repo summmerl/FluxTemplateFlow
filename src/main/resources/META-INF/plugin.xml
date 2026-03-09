@@ -20,23 +20,26 @@
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
 
-    <depends>com.intellij.java</depends>
-    <depends>JavaScript</depends>
+    <depends>com.intellij.modules.platform</depends>
+<!--    <depends>JavaScript</depends>-->
     <!--   <resource-bundle>messages.MyMessageBundle</resource-bundle>  -->
      <!-- Extensions defined by the plugin.
           Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow id="MyWebToolWindow" anchor="right" mplementationClass="com.example.plugin.MyWebToolWindowFactory">
-        </toolWindow>
+        <!-- Register your cache manager as a service -->
+        <applicationService serviceImplementation="org.example.fluxtemplateflow.MyToolWindowFactory"/>
     </extensions>
 
     <actions>
         <action id="flux.MyAction"
                 class="flux.MyAction"
-                text="Say Hello"
-                description="Say hello from plugin">
+                text="FluxTemplateFlow">
             <!-- 将动作放到菜单/工具栏 -->
             <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <!-- 编辑区右键菜单 -->
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+            <!-- 项目视图（文件/文件夹）右键菜单 -->
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>

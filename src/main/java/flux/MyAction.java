@@ -13,6 +13,7 @@
  * @version v1.0.0
  */
 package flux;
+
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.ui.Messages;
@@ -39,4 +40,3 @@ public class MyAction extends AnAction {
         Messages.showInfoMessage("Hello from plugin!", "My Plugin");
     }
 }
-

@@ -1,0 +1,48 @@
+import org.jetbrains.intellij.platform.gradle.TestFrameworkType
+
+plugins {
+    id 'java'
+    id 'org.jetbrains.intellij.platform' version '2.10.2'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    maven {
+        name = '阿里云公共仓库'
+        url = 'https://maven.aliyun.com/repository/public'
+    }
+    maven {
+        name = '阿里云谷歌仓库'
+        url = 'https://maven.aliyun.com/repository/google'
+    }
+    intellijPlatform {
+        defaultRepositories()
+    }
+}
+
+dependencies {
+    intellijPlatform {
+        intellijIdea('2025.2.4')
+        testFramework TestFrameworkType.Platform.INSTANCE
+        bundledPlugin('com.intellij.java')
+        bundledPlugin('JavaScript')
+    }
+}
+
+intellijPlatform {
+    pluginConfiguration {
+        ideaVersion {
+            sinceBuild = '252.25557'
+        }
+        changeNotes = """
+            Initial version
+        """.stripIndent()
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    sourceCompatibility = '21'
+    targetCompatibility = '21'
+}
